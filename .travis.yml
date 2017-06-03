@@ -1,0 +1,26 @@
+language: node_js
+node_js:
+- '7'
+before_script:
+- npm install -g gitbook-cli
+script:
+- mkdir book
+- cd book
+- gitbook init
+- cp ../book.json .
+- cp ../*.md .
+- gitbook install
+- gitbook build
+- git config --global user.email "$GIT_EMAIL"
+- git config --global user.name "$GIT_NAME"
+- git config --global push.default simple
+- git clone --depth 1 --branch gh-pages https://$GH_TOKEN@github.com/$GH_REPO gh-pages
+- cp -R _book/* gh-pages
+- cd gh-pages
+- git add -A .
+- MESSAGE=`date +\ %Y-%m-%d\ %H:%M:%S`
+- git commit -m "Book updated:$MESSAGE"
+- git push --quiet
+env:
+  global:
+    secure: FEvu30zg35vhVcBiNev6v2nC1WDCU8wOSTGk5gadu629poQDGzDyN92WyUmZjCmr1VHfekj+s4hDd9BTk8KoeaGw+80JtBXApS50LDqGLPT0xXic3eTdhCK7QMXJOrjM2VS65F4TdXi6znHNpyllclLVlpAMG5HdCrtPnGZDeM0ZdIlIHOjYgAoNeJkdqbx6z58HtJtTi0LKBUm8TzG4iUaQrlm55sCbI9oK90dfcx7oanoH/fpuPPwZEur0hy/7HIR+SBnQsk+x+nc6mVKIL3VsTcm9CXaBgUnlPsnaHuB4xmfs/RfM2wFj56LJBj8IjxsIqaqOIEZS9CMiVyWiNZ9XL++vnLtMxYMWEGHP7WtDpuXr/Sq0zd/MwpoEXaBZnpSCHkJoWZZFtZk3J5GUUlGXZDy++x7wP/md9DeLh/PAmYL+XzQJ+LrH/rwL29KIetsEPGL3YQ+i1YO0h/0DwX7/fZmtCiY2yncMBTnuFqQDZuuySHgHNK+21dk2a6oNM8PjQv2lbyP6c+U2IPG7Vhm/6uxB4T1K/x54WTHUscG/zibJEEN3gCH0BP4ifLdvH//uLWxEVzyCbtjSc+PQ0gpNb+ENcdUCeh3Jp557X+3woNDHIOlHdphOiMGRfmIGoKQIBggpp2cL1iO969PC+4chP4nxKM1biGfMFB40d8I=

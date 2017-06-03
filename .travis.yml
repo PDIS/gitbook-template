@@ -14,6 +14,7 @@ script:
 - git config --global user.email "$GIT_EMAIL"
 - git config --global user.name "$GIT_NAME"
 - git config --global push.default simple
+- mkdir gh-pages
 - git clone --depth 1 --branch gh-pages https://$GH_TOKEN@github.com/$GH_REPO gh-pages
 - cp -R _book/* gh-pages
 - cd gh-pages

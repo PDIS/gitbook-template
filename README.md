@@ -1,5 +1,6 @@
-# 空的 Gitbook 範本
+空的 Gitbook 範本
 =================
+
 基本概念是利用 Github 的 gh-pages 架設 Gitbook
 但是我們會希望一旦我們編輯 Markdown 檔案時，線上的 Gitbook 會自動更新
 所以我們採用 travis 作為自動更新的手段，並且把 build 好的 Gitbook push 到 gh-pages branch
